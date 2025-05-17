@@ -34,8 +34,8 @@ def fetch_order_book_okx(symbol, limit):
         raise Exception(f"OKEx 返回数据为空或格式错误: {data}")
     
     book = data["data"][0]
-    bids = [[float(p), float(q)] for p, q, _ in book['bids']]
-    asks = [[float(p), float(q)] for p, q, _ in book['asks']]
+   bids = [[float(p[0]), float(p[1])] for p in book['bids']]
+asks = [[float(p[0]), float(p[1])] for p in book['asks']]
     return bids, asks
 
 # 转为DataFrame
