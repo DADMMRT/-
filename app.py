@@ -7,16 +7,10 @@ from streamlit_autorefresh import st_autorefresh
 st.set_page_config(page_title="Crypto Liquidity Monitor", layout="wide")
 st.title("📊 实时加密货币挂单热力图监控")
 
-# 选择币种
 symbol = st.selectbox("选择币种:", ["BTCUSDT", "ETHUSDT", "BNBUSDT"])
-
-# 显示深度档数
 limit = st.slider("显示深度档数:", min_value=10, max_value=500, value=100, step=10)
-
-# 刷新间隔，最少10秒
 refresh_interval = st.slider("刷新间隔 (秒):", min_value=10, max_value=60, value=10, step=5)
 
-# 自动刷新组件
 st_autorefresh(interval=refresh_interval * 1000, key="refresh")
 
 def fetch_order_book(symbol, limit):
@@ -62,4 +56,3 @@ fig = px.density_heatmap(
 fig.update_yaxes(autorange="reversed")
 
 st.plotly_chart(fig, use_container_width=True)
-
